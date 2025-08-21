@@ -1,0 +1,40 @@
+# ===================================
+# Node.js dependencies
+# ===================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===================================
+# Build / Production / Coverage
+# ===================================
+build/
+dist/
+coverage/
+
+# ===================================
+# Environment Variables
+# ===================================
+.env
+.env.*      # includes .env.local, .env.development.local, etc.
+
+# ===================================
+# IDE & Editor Configs
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===================================
+# OS & Misc Junk Files
+# ===================================
+.DS_Store
+Thumbs.db
+
+# ===================================
+# Sensitive Backend Files
+# ===================================
+backend/.env
+backend/hashpass.js
