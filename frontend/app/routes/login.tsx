@@ -1,5 +1,4 @@
 
-
 import { useDispatch, useSelector } from "react-redux";
 import { type RootState } from "src/store/store";
 import { updateForm, loginStart, loginSuccess, loginFailure, setFormErrors } from "src/store/authSlice";
@@ -56,7 +55,7 @@ export default function Login() {
             Login
           </h1>
 
-          <p className="text-[14px] sm:text-[15px] lg:text-[16px] font-normal leading-[16px] sm:leading-[17px] lg:leading-[19px] text-left text-[#6b7280] w-auto text-center">
+          <p className="text-[14px] sm:text-[15px] lg:text-[16px] font-normal leading-[16px] sm:leading-[17px] lg:leading-[19px] text-left, text-[#6b7280] w-auto text-center">
             Welcome back, please login to continue
           </p>
 

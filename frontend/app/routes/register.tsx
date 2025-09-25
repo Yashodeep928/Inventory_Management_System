@@ -31,7 +31,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row w-full min-h-screen bg-[#ffffff]">
+    <main className="flex flex-col lg:flex-row justify-start items-center w-full min-h-screen bg-[#ffffff]">
       {/* Left Column - Form */}
       <section className="flex flex-col justify-start items-end w-full lg:w-[42%] px-[28px] sm:px-[42px] lg:px-[56px] pr-[47px] sm:pr-[70px] lg:pr-[94px] py-8 lg:py-0">
         <div className="flex flex-col gap-[18px] sm:gap-[27px] lg:gap-[36px] justify-start items-center w-full max-w-[364px]">
