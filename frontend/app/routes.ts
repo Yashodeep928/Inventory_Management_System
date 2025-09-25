@@ -1,15 +1,15 @@
-import {
-    
-    type RouteConfig, index ,route
-
-} from "@react-router/dev/routes";
+// app/routes.ts
+import { type RouteConfig, route } from "@react-router/dev/routes";
+import Root from "./root"; // <-- root is the App/Provider wrapper
 
 export default [
-    index("routes/home.tsx"),
-    route("/about", "routes/About.tsx"),
-    route("/services", "routes/Services.tsx"),
-    // route("/pricing", "routes/pricing.tsx"),
-    route("/contact", "routes/Contact.tsx")
+  route("/", "routes/home.tsx"), // root wraps all child routes
 
+  // Public pages
+  route("/login", "routes/login.tsx"),
+  route("/register", "routes/register.tsx"),
 
+  // Protected dashboards
+  route("/user/dashboard", "routes/user.dashboard.tsx"),
+  route("/admin/dashboard", "routes/admin.dashboard.tsx"),
 ] satisfies RouteConfig;
