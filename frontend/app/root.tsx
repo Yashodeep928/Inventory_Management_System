@@ -1,3 +1,4 @@
+// app/root.tsx
 import {
   isRouteErrorResponse,
   Links,
@@ -6,23 +7,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
-import type { Route } from "./+types/root";
+import { Provider } from "react-redux";
+import { store } from "src/store/store"; // path to your redux store
 import "./app.css";
-import Navbar from "./Components/Navbar";
-
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+import { SocketProvider } from "./context/SocketProvider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,10 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Navbar />
-        <main className="pt-20">
-          {children}
-        </main>
+        <main>{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -45,17 +30,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-
 export default function App() {
-  return  <>
-    
-      
+  // Wrap the Outlet with Provider
+  return (
+    <Provider store={store}>
+      <SocketProvider>
         <Outlet />
-      </>;
-
+      </SocketProvider>
+    </Provider>
+  );
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: { error: unknown }) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
@@ -66,7 +52,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (import.meta.env.DEV && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }

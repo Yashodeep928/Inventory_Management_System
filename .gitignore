@@ -38,3 +38,4 @@ Thumbs.db
 # ===================================
 backend/.env
 backend/hashpass.js
+output.txt

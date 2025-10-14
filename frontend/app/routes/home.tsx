@@ -1,12 +1,6 @@
-import type { Route } from "./+types/home";
-
-export function meta() {
-  return [
-    { title: "Home Page" },
-    { name: "description", content: "Framework Routing for Protected routing" },
-  ];
-}
+import { Navigate } from "react-router";
 
 export default function Home() {
-  return ;
+
+  return <Navigate to="/login" replace />;
 }
