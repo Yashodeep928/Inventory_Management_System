@@ -111,16 +111,16 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
         <input
           className="border rounded px-3 py-2"
           type="number"
-          placeholder="Price"
-          value={price}
+          placeholder="Price (INR)"
+          value={(!isEdit && price === 0) ? "" : price}
           onChange={(e) => setPrice(Number(e.target.value))}
           required
         />
         <input
           className="border rounded px-3 py-2"
           type="number"
-          placeholder="Quantity"
-          value={quantity}
+          placeholder="Quantity (units)"
+          value={(!isEdit && quantity === 0) ? "" : quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
           required
         />

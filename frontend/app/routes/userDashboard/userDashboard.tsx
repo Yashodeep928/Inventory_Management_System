@@ -26,6 +26,14 @@ function getStatusColor(status: string) {
   return statusColors[status.toLowerCase()] || statusColors.default;
 }
 
+function formatINR(amount: number) {
+  try {
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount);
+  } catch {
+    return `₹${amount.toFixed(2)}`;
+  }
+}
+
 function ProductCard({ product, isSelected, onSelect, onDeselect }: {
   product: Product;
   isSelected: boolean;
@@ -46,7 +54,7 @@ function ProductCard({ product, isSelected, onSelect, onDeselect }: {
           <h3 className="font-semibold text-gray-900 mb-1">{product.name}</h3>
           <p className="text-sm text-gray-600 mb-2">{product.category}</p>
           <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-emerald-600">${product.price}</span>
+            <span className="text-lg font-bold text-emerald-600">{formatINR(product.price)}</span>
             <span className="text-sm text-gray-500">
               {product.quantity > 0 ? (
                 <span className="text-green-600">In Stock ({product.quantity})</span>
@@ -345,7 +353,7 @@ export default function Dashboard() {
                       <p className="text-sm text-gray-600">{selectedProductObj.category}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-bold text-emerald-600">${selectedProductObj.price}</div>
+                      <div className="text-lg font-bold text-emerald-600">{formatINR(selectedProductObj.price)}</div>
                       <div className="text-sm text-gray-500">
                         Stock: {selectedProductObj.quantity}
                       </div>
@@ -374,9 +382,7 @@ export default function Dashboard() {
                   <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
                     <div className="flex justify-between text-sm">
                       <span className="text-emerald-700">Total Amount:</span>
-                      <span className="font-semibold text-emerald-900">
-                        ${(selectedProductObj.price * quantity).toFixed(2)}
-                      </span>
+                      <span className="font-semibold text-emerald-900">{formatINR(selectedProductObj.price * quantity)}</span>
                     </div>
                   </div>
                 )}

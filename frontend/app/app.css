@@ -56,12 +56,29 @@
     line-height: 1.6;
   }
   
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #f3f4f6; /* gray-100 */
+  }
+  .dark main, .dark .container, .dark .page {
+    background-color: transparent;
+  }
+  .dark input, .dark select, .dark textarea {
+    background-color: #111827; /* gray-900 */
+    color: #e5e7eb; /* gray-200 */
+    border-color: #374151; /* gray-700 */
+  }
+  .dark input::placeholder, .dark textarea::placeholder {
+    color: #9ca3af; /* gray-400 */
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     line-height: 1.2;
   }
 }
+
+
 
 /* Component Styles */
 @layer components {
@@ -72,6 +89,10 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
+  }
+  
+  .dark .glass-card h3, .dark .glass-card p, .dark .glass-card span {
+    color: inherit;
   }
   
   /* Status Indicators */

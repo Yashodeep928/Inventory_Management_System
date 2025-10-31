@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDarkMode } from "usehooks-ts";
 import Papa from "papaparse";
 
 interface Customer {
@@ -35,7 +34,6 @@ interface InventorySettings {
 }
 
 function Settings() {
-  const { isDarkMode, toggle } = useDarkMode();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -78,11 +76,7 @@ function Settings() {
     fetchData();
   }, []);
 
-  // Apply Tailwind dark mode
-  useEffect(() => {
-    if (isDarkMode) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-  }, [isDarkMode]);
+  // Dark mode is handled globally in app/root.tsx via navbar toggle
 
   const saveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,25 +170,10 @@ function Settings() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Left Column */}
         <div className="space-y-6">
-          {/* Appearance Settings */}
-          <div className="glass-card p-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-900 flex items-center">
-              <span className="mr-2">🎨</span>
-              Appearance
-            </h2>
-            <label className="flex items-center space-x-3">
-              <input 
-                type="checkbox" 
-                checked={isDarkMode} 
-                onChange={toggle}
-                className="w-4 h-4 text-emerald-600 bg-gray-100 border-gray-300 rounded focus:ring-emerald-500"
-              />
-              <span className="text-gray-700">Enable dark mode</span>
-            </label>
-          </div>
+          
 
           {/* Profile Settings */}
-          <div className="glass-card p-6">
+          <div id="profile" className="glass-card p-6">
             <h2 className="text-xl font-semibold mb-4 text-gray-900 flex items-center">
               <span className="mr-2">👤</span>
               Profile Settings
