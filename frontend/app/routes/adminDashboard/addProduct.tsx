@@ -13,7 +13,7 @@ export default function AdminProductsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-xl p-6 shadow-sm">
           <h3 className="text-lg font-semibold mb-4">
-            {editing ? "Edit product" : "Add new product"}
+            {editing ? "Edit product" : "Add Products"}
           </h3>
           <ProductForm
             key={editing ? editing.product_id ?? "edit" : `new-${refreshKey}`}

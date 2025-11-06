@@ -108,7 +108,7 @@ function Orders() {
           <div className="flex-1">
             <input
               type="text"
-              placeholder="Search by customer name, email, or order ID..."
+              placeholder="Search customers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"

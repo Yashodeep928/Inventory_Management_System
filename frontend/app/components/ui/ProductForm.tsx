@@ -91,7 +91,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
 
   return (
     <div className="mb-4">
-      <h3 className="text-lg font-semibold mb-2">{isEdit ? "Edit Product" : "Add Product"}</h3>
+      <h3 className="text-lg font-semibold mb-2">{isEdit ? "Edit Product" : ""}</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
