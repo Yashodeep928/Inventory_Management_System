@@ -1,26 +1,15 @@
 interface BarPoint { label: string; value: number }
 
-function BarChart({ data }: { data?: BarPoint[] }) {
-  const fallback: BarPoint[] = [
-    { label: "Jan", value: 120 },
-    { label: "Feb", value: 90 },
-    { label: "Mar", value: 150 },
-    { label: "Apr", value: 110 },
-    { label: "May", value: 180 },
-    { label: "Jun", value: 140 },
-    { label: "Jul", value: 200 },
-    { label: "Aug", value: 160 },
-    { label: "Sep", value: 190 },
-    { label: "Oct", value: 170 },
-    { label: "Nov", value: 130 },
-    { label: "Dec", value: 210 },
-  ];
-  const points = (data && data.length > 0) ? data : fallback;
-  const max = Math.max(1, ...points.map(p => p.value));
+function BarChart({ data }: { data: BarPoint[] }) {
+  if (!data || data.length === 0) {
+    return <div className="text-gray-500">No revenue data available</div>;
+  }
+
+  const max = Math.max(1, ...data.map(p => p.value));
 
   return (
     <div className="h-64 flex items-end justify-between space-x-2">
-      {points.map((item, index) => (
+      {data.map((item, index) => (
         <div key={index} className="flex flex-col items-center space-y-2">
           <div
             className="w-8 rounded-t"
@@ -36,4 +25,5 @@ function BarChart({ data }: { data?: BarPoint[] }) {
     </div>
   );
 }
+
 export default BarChart;

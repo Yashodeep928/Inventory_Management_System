@@ -4,6 +4,7 @@ import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import endpoints from './config/endpoints.js';
+import dashboardRoutes from './routes/dashboardRoutes.js'
 import cors from 'cors';
 import { setupSocket } from './config/socketConfig.js';
 
@@ -24,6 +25,7 @@ app.use(endpoints.users, userRoutes);
 app.use(endpoints.products, productRoutes);
 app.use(endpoints.orders, orderRoutes);
 app.use(endpoints.payments, paymentRoutes);
+app.use(endpoints.dashboard, dashboardRoutes)
 
 // Start server first
 const server = app.listen(process.env.PORT, () => {

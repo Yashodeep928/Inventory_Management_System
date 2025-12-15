@@ -1,44 +1,23 @@
 import { Outlet } from "react-router";
-
-
 import UserNavbar from "../../components/userNavbar";
 import UserSidebar from "../../components/userSidebar";
+
 export default function UserLayout() {
-
   return (
-    <div className="font-inter" style={{ backgroundColor: "#F5F5F5" }}>
+    <div className="font-inter min-h-screen bg-gray-100 dark:bg-gray-900">
+      {/* Sidebar */}
+      <UserSidebar />
 
-         <UserSidebar />
-      {/* Main content starts */}
+      {/* Main content */}
+      <main className="ml-64 min-h-screen bg-gray-50 dark:bg-gray-900">
+        {/* Top Navbar */}
+        <UserNavbar />
 
-
-      <main className="ml-64 min-h-screen bg-gray-50">
-
-
-      <UserNavbar />
-       
-
-
-
-
-
-        {/* Our portion starts */}
-
-        <div className="p-6">
-
-          <Outlet /> {/* renders child routes like dashboard, orders, profile */}
-
+        {/* Page Content */}
+        <div className="p-6 text-gray-900 dark:text-gray-100">
+          <Outlet />
         </div>
-
-       {/* Our portion ends */}
-
-
-
-
       </main>
-
-      {/* Main content ends */}
-
     </div>
   );
 }

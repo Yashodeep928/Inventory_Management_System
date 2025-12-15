@@ -11,7 +11,8 @@ import { Provider } from "react-redux";
 import { store } from "src/store/store"; // path to your redux store
 import "./app.css";
 import { SocketProvider } from "./context/SocketProvider";
-import { useEffect } from "react";
+// import { useEffect } from "react";
+import { ThemeProvider } from "./components/ui/theme-provider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,7 +22,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        
       </head>
       <body>
         <main>{children}</main>
@@ -33,18 +33,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  // Wrap the Outlet with Provider
-  useEffect(() => {
-    // Ensure no lingering 'dark' class from older sessions
-    document.documentElement.classList.remove('dark');
-  }, []);
 
   return (
-    <Provider store={store}>
-      <SocketProvider>
-        <Outlet />
-      </SocketProvider>
-    </Provider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Provider store={store}>       
+          <Outlet />
+      </Provider>
+    </ThemeProvider>
   );
 }
 

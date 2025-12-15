@@ -1,4 +1,3 @@
-
 import LogoutIcon from "~/Icons/userIcons/LogoutIcon";
 import DashboardIcon from "~/Icons/userIcons/DashboardIcon";
 import OrdersIcon from "~/Icons/userIcons/OrdersIcon";
@@ -6,42 +5,35 @@ import ProfileIcon from "~/Icons/userIcons/ProfileIcon";
 import { NavLink } from "react-router";
 import { useLogout } from "~/routes/ProtectedRoute";
 
-
-
-
-function userNavbar() {
+function UserNavbar() {
   const logoutUser = useLogout();
 
   return (
     <>
-
-
-    {/* Sidebar starts */}
-
-
-      <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r z-50">
+      {/* Sidebar starts */}
+      <aside className="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50">
         <div className="p-6 h-full flex flex-col justify-between">
-          {/* Logo (match admin) */}
+          {/* Logo */}
           <div>
             <div className="flex items-center space-x-3 mb-8">
-              <div
-                className="w-8 h-8 rounded-sm flex items-center justify-center"
-                style={{ backgroundColor: "#00A86B" }}
-              >
+              <div className="w-8 h-8 rounded-sm flex items-center justify-center bg-green-700 dark:bg-green-600">
                 <div className="w-4 h-4 bg-white rounded-sm"></div>
               </div>
-              <h1 className="text-lg font-semibold text-gray-800">
+              <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                 Inventory Management
               </h1>
             </div>
 
-            {/* Navigation Menu (match admin active state) */}
+            {/* Navigation Menu */}
             <nav className="space-y-2">
               <NavLink
                 to="/user"
+                end
                 className={({ isActive }) =>
                   `flex items-center space-x-3 px-4 py-3 rounded-lg font-medium ${
-                    isActive ? "bg-green-100 text-green-700" : "text-gray-600 hover:bg-gray-100"
+                    isActive
+                      ? "bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
               >
@@ -53,7 +45,9 @@ function userNavbar() {
                 to="/user/orders"
                 className={({ isActive }) =>
                   `flex items-center space-x-3 px-4 py-3 rounded-lg font-medium ${
-                    isActive ? "bg-green-100 text-green-700" : "text-gray-600 hover:bg-gray-100"
+                    isActive
+                      ? "bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
               >
@@ -65,7 +59,9 @@ function userNavbar() {
                 to="/user/profile"
                 className={({ isActive }) =>
                   `flex items-center space-x-3 px-4 py-3 rounded-lg font-medium ${
-                    isActive ? "bg-green-100 text-green-700" : "text-gray-600 hover:bg-gray-100"
+                    isActive
+                      ? "bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
               >
@@ -75,26 +71,20 @@ function userNavbar() {
             </nav>
           </div>
 
-          {/* Logout Button (sticky bottom like admin) */}
+          {/* Logout Button */}
           <button
             onClick={logoutUser}
-            className="flex items-center space-x-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
             type="button"
+            className="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-700"
           >
             <LogoutIcon />
             <span>Logout</span>
           </button>
         </div>
       </aside>
-
-         {/* sidebar ends */}
-
-    
-    
-    
-    
+      {/* Sidebar ends */}
     </>
-  )
+  );
 }
 
-export default userNavbar
+export default UserNavbar;

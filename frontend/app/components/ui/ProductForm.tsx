@@ -14,7 +14,10 @@ interface ProductFormProps {
   onSuccess: () => void;
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSuccess }) => {
+const ProductForm: React.FC<ProductFormProps> = ({
+  productToEdit = null,
+  onSuccess,
+}) => {
   const [name, setName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
@@ -30,7 +33,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
       setPrice(Number(productToEdit.price ?? 0));
       setQuantity(Number(productToEdit.quantity ?? 0));
     } else {
-      // clear form when not editing
       setName("");
       setCategory("");
       setPrice(0);
@@ -38,7 +40,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
     }
   }, [productToEdit]);
 
-  // Add product (POST)
+  /* ===================== API CALLS ===================== */
+
   const handleAdd = async () => {
     setSubmitting(true);
     try {
@@ -56,16 +59,15 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
       onSuccess();
     } catch (err) {
       console.error("Add product error:", err);
-      // you can show a toast here
     } finally {
       setSubmitting(false);
     }
   };
 
-  // Update product (PUT)
   const handleUpdate = async () => {
     if (!productToEdit?.product_id) return;
     setSubmitting(true);
+
     try {
       const res = await fetch(
         `http://localhost:3000/api/products/update/${productToEdit.product_id}`,
@@ -89,50 +91,59 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
     }
   };
 
+  /* ===================== UI ===================== */
+
   return (
     <div className="mb-4">
-      <h3 className="text-lg font-semibold mb-2">{isEdit ? "Edit Product" : ""}</h3>
+      {isEdit && (
+        <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+          Edit Product
+        </h3>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
-          className="border rounded px-3 py-2"
+          className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
+
         <input
-          className="border rounded px-3 py-2"
+          className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
           placeholder="Category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
         />
+
         <input
-          className="border rounded px-3 py-2"
           type="number"
+          className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
           placeholder="Price (INR)"
-          value={(!isEdit && price === 0) ? "" : price}
+          value={!isEdit && price === 0 ? "" : price}
           onChange={(e) => setPrice(Number(e.target.value))}
           required
         />
+
         <input
-          className="border rounded px-3 py-2"
           type="number"
+          className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
           placeholder="Quantity (units)"
-          value={(!isEdit && quantity === 0) ? "" : quantity}
+          value={!isEdit && quantity === 0 ? "" : quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
           required
         />
       </div>
 
-      <div className="mt-3">
+      <div className="mt-4">
         {isEdit ? (
           <button
             onClick={handleUpdate}
             disabled={submitting}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
             type="button"
+            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white px-4 py-2 rounded transition"
           >
             {submitting ? "Updating..." : "Update Product"}
           </button>
@@ -140,8 +151,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ productToEdit = null, onSucce
           <button
             onClick={handleAdd}
             disabled={submitting}
-            className="bg-green-600 text-white px-4 py-2 rounded"
             type="button"
+            className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white px-4 py-2 rounded transition"
           >
             {submitting ? "Adding..." : "Add Product"}
           </button>
