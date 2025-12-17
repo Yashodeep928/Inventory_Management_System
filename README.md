@@ -55,39 +55,39 @@ This project is actively maintained, and some advanced integrations are currentl
 
 ### Register
 
-![Register](screenshots/Register.png)
+![Register](screenshots/register.png)
 
 ### Dashboard
 
-![Dashboard](screenshots/Dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 
 ### Products
 
-![Products](screenshots/Products.png)
+![Products](screenshots/products.png)
 
 ### Orders
 
-![Orders](screenshots/Orders.png)
+![Orders](screenshots/orders.png)
 
 ### Customers
 
-![Customers](screenshots/Customers.png)
+![Customers](screenshots/customers.png)
 
 ### User Dashboard
 
-![User Dashboard](screenshots/UserDashboard.png)
+![User Dashboard](screenshots/user-dashboard.png)
 
 ### User Orders
 
-![User Orders](screenshots/UserOrder.png)
+![User Orders](screenshots/user-orders.png)
 
 ### User Profile
 
-![User Profile](screenshots/UserProfile.png)
+![User Profile](screenshots/user-profile.png)
 
 ### Settings
 
-![Settings](screenshots/Settings.png)
+![Settings](screenshots/settings.png)
 
 ---
 
