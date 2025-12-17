@@ -51,7 +51,7 @@ This project is actively maintained, and some advanced integrations are currentl
 
 ### Login
 
-![Login](screenshots/Login.png)
+![Login](screenshots/login.png)
 
 ### Register
 
